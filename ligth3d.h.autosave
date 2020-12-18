@@ -1,0 +1,29 @@
+#ifndef LIGTH3D_H
+#define LIGTH3D_H
+#include <QVector3D>
+
+namespace Tilipod3D { // Пространство имен разработчика
+
+typedef struct // Тип "Информация об источнике света"
+  {
+    QVector3D position; // Позиция источника света в видимых координатах
+    QVector3D La; // Интенсивность фонового света
+    QVector3D Ld; // Интенсивность рассеянного света
+    QVector3D Ls; // Интенсивность отраженного света
+  } t_lightInfo;
+
+class Ligth3D // Класс "Источник света"
+  {
+    t_lightInfo info; // Информация об источнике света
+    
+    public:
+    
+        // 0. Конструкторы и деструктор
+    
+        Ligth3D(); // Конструктор по умолчанию
+        ~Ligth3D(); // Деструктор
+  };
+
+} // Конец пространства имен
+
+#endif // LIGTH3D_H

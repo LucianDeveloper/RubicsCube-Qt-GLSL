@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/shaders">
+        <file>shaders/fragmentLightingShader.fsh</file>
+        <file>shaders/vertexLightingShader.vsh</file>
+    </qresource>
+    <qresource prefix="/assets">
+        <file>assets/2cvr.bmp</file>
+        <file>assets/3cvr.bmp</file>
+        <file>assets/floor.bmp</file>
+        <file>assets/glass.bmp</file>
+        <file>assets/lamp.bmp</file>
+        <file>assets/pages_2.bmp</file>
+        <file>assets/sky.bmp</file>
+        <file>assets/sky2.bmp</file>
+        <file>assets/wall.bmp</file>
+        <file>assets/wood.bmp</file>
+    </qresource>
+</RCC>

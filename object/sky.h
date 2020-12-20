@@ -1,9 +1,8 @@
-#ifndef ROOM_H
-#define ROOM_H
+#ifndef SKY_H
+#define SKY_H
 
 #include <wrappers/shaderObject.h>
 #include <wrappers/sceneObject.h>
-
 #include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
 #include <QOpenGLWidget>
@@ -11,11 +10,11 @@
 
 namespace RubicsCube {
 
-class Room : public ShaderObject {
+class Sky : public ShaderObject {
 Q_OBJECT
 public:
-    Room(const int, const QVector3D&); // Конструктор с инициализацией ID и смещения ящика
-    ~Room();                           // Деструктор
+    Sky(const int, const QVector3D&); // Конструктор с инициализацией ID и смещения ящика
+    ~Sky();                           // Деструктор
 
     // Текстуры
     GLuint textureLoc[5];
@@ -30,4 +29,4 @@ public:
 
 }
 
-#endif // ROOM_H
+#endif // SKY_H

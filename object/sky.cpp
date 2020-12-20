@@ -1,58 +1,38 @@
-#include "object/room.h"
+#include "sky.h"
 #include <QGLWidget>
-
 namespace RubicsCube {
 
 
-Room::Room(const int idBuf, const QVector3D& bufBias) : ShaderObject(){
+Sky::Sky(const int idBuf, const QVector3D& bufBias) : ShaderObject(){
     id = idBuf;
     mode = GL_QUADS;
     material.Ka = material.Kd = material.Ks = QVector3D(1, 1, 1);
     material.shininess = 256;
     isMaySelect = false;
-    isSuperClass = true;
+    isSuperClass = false;
     isAnimated = false;
 
     double sizeW = 8;
     double sizeH = sizeW * 0.5;
     object.clear();
     EdgeObject bufEdge;
-    bufEdge << Point3D(sizeW, -sizeH, sizeW) << Point3D(sizeW, -sizeH, -sizeW)
-            << Point3D(sizeW, sizeH, -sizeW) << Point3D(sizeW, sizeH, sizeW);
+    bufEdge << Point3D(sizeW, sizeH, -sizeW) << Point3D(sizeW, sizeH, sizeW)
+            << Point3D(-sizeW, sizeH, sizeW) << Point3D(-sizeW, sizeH, -sizeW);
     bufEdge.setColor(QColor(255, 255, 255));
     object << bufEdge;
     bufEdge.clear();
-    bufEdge << Point3D(-sizeW, sizeH, sizeW) << Point3D(-sizeW, sizeH, -sizeW)
-            << Point3D(-sizeW, -sizeH, -sizeW) << Point3D(-sizeW, -sizeH, sizeW);
-    bufEdge.setColor(QColor(255, 255, 255));
-    object << bufEdge;
-    bufEdge.clear();
-    bufEdge << Point3D(-sizeW, -sizeH, sizeW) << Point3D(-sizeW, sizeH, sizeW)
-            << Point3D(sizeW, sizeH, sizeW) << Point3D(sizeW, -sizeH, sizeW);
-    bufEdge.setColor(QColor(255, 255, 255));
-    object << bufEdge;
-    bufEdge.clear();
-    bufEdge << Point3D(-sizeW, -sizeH, -sizeW) << Point3D(-sizeW, sizeH, -sizeW)
-            << Point3D(sizeW, sizeH, -sizeW) << Point3D(sizeW, -sizeH, -sizeW);
-    bufEdge.setColor(QColor(255, 255, 255));
-    object << bufEdge;
-    bufEdge.clear();
-
     setInitBias(bufBias);
-
-    //загружаем текстуру
-
 }
 
-Room::~Room() {}
+Sky::~Sky() {}
 
-int Room::bind(const CameraObject& camera, const QVector<LightObject>& lights) {
+int Sky::bind(const CameraObject& camera, const QVector<LightObject>& lights) {
     QVector<float> bufCoords = getVectorEdgeCoords();
     QVector<float> bufColors = getVectorEdgeColor();
     QVector<float> bufNormal = getVectorEdgeNormal();
 
     shpr.bind();
-    glBindTexture(GL_TEXTURE_2D, textureLoc[0]);
+    glBindTexture(GL_TEXTURE_2D, textureLoc[2]);
     // Зададим матрицу, на которую будут умножены однородные координаты вершин в вершинном шейдере
     shpr.setUniformValue("proectionMatrix", view.projectMatrix * camera.getLook() * view.modelViewMatrix);
 
@@ -92,12 +72,8 @@ int Room::bind(const CameraObject& camera, const QVector<LightObject>& lights) {
 
     // Текстуры
     // Текстурные координаты
-    static const float texturePos[24][2] =
-    {{ 10.0f,  0.0f},{ 0.0f,  0.0f}, { 0.0f,  10.0f},  { 10.0f, 10.0f},
-     { 10.0f,  0.0f}, { 0.0f,  0.0f}, { 0.0f,  10.0f},  { 10.0f, 10.0f},
-     { 0.0f,  0.0f}, { 0.0f,  10.0f},  { 10.0f, 10.0f}, { 10.0f,  0.0f},
-     { 0.0f,  0.0f}, { 0.0f,  10.0f},  { 10.0f, 10.0f}, { 10.0f,  0.0f},
-    };
+    static const float texturePos[4][2] =
+    {{ 0.0f,  0.0f}, { 0.0f,  3.0f},  { 3.0f, 3.0f}, { 3.0f,  0.0f}};
     shpr.setAttributeArray("texturePos", (float*)texturePos, 2);
     shpr.enableAttributeArray("texturePos");
     // Конец
@@ -105,7 +81,7 @@ int Room::bind(const CameraObject& camera, const QVector<LightObject>& lights) {
     return bufCoords.size() / 3;
   }
 
-void Room::release() {
+void Sky::release() {
     shpr.disableAttributeArray("posVertex");
     shpr.disableAttributeArray("colorVertex");
     shpr.disableAttributeArray("normalVertex");
@@ -113,7 +89,7 @@ void Room::release() {
     shpr.release();
 }
 
-void Room::initShader() {
+void Sky::initShader() {
     // Текст вершинного шейдера
     shpr.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/shaders/vertexTextureShader.vsh");
 
@@ -127,18 +103,17 @@ void Room::initShader() {
 
     // Текстуры
     QImage texture;
-//    glGenTextures(5, textureLoc);
-    //загружаем текстуру
     glGenTextures(5, textureLoc);
-    texture.load(":/assets/assets/wall.bmp");
+    texture.load(":/assets/assets/sky2.bmp");
     texture = QGLWidget::convertToGLFormat(texture);
-    glBindTexture(GL_TEXTURE_2D, textureLoc[0]);
+    glBindTexture(GL_TEXTURE_2D, textureLoc[2]);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); // параметры фильтрации
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, 3, GLsizei(texture.width()), GLsizei(texture.height()), 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.bits());
+
 }
 
-void Room::resetModelView() {
+void Sky::resetModelView() {
     // Инициализация видовой матрицы как единичной
     view.modelViewMatrix.setToIdentity();
 
@@ -157,10 +132,9 @@ void Room::resetModelView() {
     view.modelViewMatrix.scale(kScale, kScale, kScale);
 }
 
-void Room::resetProjection(const int w, const int h, const float fov) {
+void Sky::resetProjection(const int w, const int h, const float fov) {
     // Инициализация единичной матрицы
     view.projectMatrix.setToIdentity();
-
     // Умножение на матрицу перспективного проектирования
     view.projectMatrix.perspective(fov, (float) w / h, 0.1, 20);
 }

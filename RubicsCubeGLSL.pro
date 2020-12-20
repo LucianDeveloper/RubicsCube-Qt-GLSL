@@ -30,7 +30,9 @@ SOURCES += \
     wrappers/pointObject.cpp \
     wrappers/sceneObject.cpp \
     wrappers/shaderObject.cpp \
-    object/lamp.cpp
+    object/lamp.cpp \
+    object/sky.cpp \
+    object/floor.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -44,7 +46,9 @@ HEADERS += \
     wrappers/pointObject.h \
     wrappers/sceneObject.h \
     wrappers/shaderObject.h \
-    object/lamp.h
+    object/lamp.h \
+    object/sky.h \
+    object/floor.h
 
 FORMS += \
     mainwindow.ui
@@ -69,5 +73,7 @@ DISTFILES += \
     assets/sky.bmp \
     assets/sky2.bmp \
     assets/wall.bmp \
-    assets/wood.bmp
+    assets/wood.bmp \
+    shaders/fragmentTextureShader.fsh \
+    shaders/vertexTextureShader.vsh
 

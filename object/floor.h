@@ -1,5 +1,5 @@
-#ifndef ROOM_H
-#define ROOM_H
+#ifndef FLOOR_H
+#define FLOOR_H
 
 #include <wrappers/shaderObject.h>
 #include <wrappers/sceneObject.h>
@@ -11,11 +11,11 @@
 
 namespace RubicsCube {
 
-class Room : public ShaderObject {
+class Floor : public ShaderObject {
 Q_OBJECT
 public:
-    Room(const int, const QVector3D&); // Конструктор с инициализацией ID и смещения ящика
-    ~Room();                           // Деструктор
+    Floor(const int, const QVector3D&); // Конструктор с инициализацией ID и смещения ящика
+    ~Floor();                           // Деструктор
 
     // Текстуры
     GLuint textureLoc[5];
@@ -30,4 +30,4 @@ public:
 
 }
 
-#endif // ROOM_H
+#endif // FLOOR_H

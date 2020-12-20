@@ -2,6 +2,8 @@
     <qresource prefix="/shaders">
         <file>shaders/fragmentLightingShader.fsh</file>
         <file>shaders/vertexLightingShader.vsh</file>
+        <file>shaders/fragmentTextureShader.fsh</file>
+        <file>shaders/vertexTextureShader.vsh</file>
     </qresource>
     <qresource prefix="/assets">
         <file>assets/2cvr.bmp</file>

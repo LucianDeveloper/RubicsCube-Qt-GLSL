@@ -7,7 +7,7 @@ SmallCube::SmallCube(const int idBuf, const QVector3D& bufBias, double size) : S
     id = idBuf;
     mode = GL_QUADS;
     material.Ka = material.Kd = material.Ks = QVector3D(1, 1, 1);
-    material.shininess = 10;
+    material.shininess = 256;
     active = true;
     isMaySelect = false;
     colors = QVector<QColor>();

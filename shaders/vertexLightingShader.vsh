@@ -1,4 +1,5 @@
-#version 150 core
+#version 330 core
+
 
 in vec3 posVertex;
 in vec4 colorVertex;
@@ -8,8 +9,6 @@ out vec4 vertexColor;
 out vec4 frontColor;
 out vec4 backColor;
 
-attribute vec2 texturePos;
-varying vec2 fragTex;
 
 struct t_lightInfo
   {
@@ -57,11 +56,10 @@ void main()
    frontColor = vec4(0.0f);
    backColor = vec4(0.0f);
    for (int i = 0; i < 3; i++) {
-       frontColor += 2*phongModel(i, eyePosition, eyeNorm);
-       backColor  += 2*phongModel(i, eyePosition, -eyeNorm);
+       frontColor += 3*phongModel(i, eyePosition, eyeNorm);
+       backColor  += 3*phongModel(i, eyePosition, -eyeNorm);
    }
 
    vertexColor = colorVertex;
-   fragTex = texturePos;
    gl_Position = proectionMatrix * vec4(posVertex, 1.0);
-  }
+}

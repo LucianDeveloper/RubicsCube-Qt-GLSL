@@ -5,9 +5,9 @@
 
 namespace RubicsCube {
 
-const QVector3D INIT_LIGHT_LA = QVector3D(0.03, 0.03, 0.03);    // Исходная интенсивность фонового света
+const QVector3D INIT_LIGHT_LA = QVector3D(0.3, 0.3, 0.3);       // Исходная интенсивность фонового света
 const QVector3D INIT_LIGHT_LD = QVector3D(0.3, 0.3, 0.3);       // Исходная интенсивность рассеянного света
-const QVector3D INIT_LIGHT_LS = QVector3D(0.003, 0.003, 0.003); // Исходная интенсивность отраженного света
+const QVector3D INIT_LIGHT_LS = QVector3D(0.1, 0.1, 0.1); // Исходная интенсивность отраженного света
 
 typedef struct
 {

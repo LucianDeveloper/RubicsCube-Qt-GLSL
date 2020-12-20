@@ -11,6 +11,10 @@ MainScene::MainScene() : scene() {
     scene << tmp;
     tmp = (ShaderObject*) new Room(1, QVector3D(0, 1, 0));
     scene << tmp;
+    tmp = (ShaderObject*) new Sky(2, QVector3D(0, 1, 0));
+    scene << tmp;
+    tmp = (ShaderObject*) new Floor(3, QVector3D(0, 1, 0));
+    scene << tmp;
 
     Lamp* newLamp = new Lamp(2, QVector3D(5, 3.5, 5), QVector3D(0.0, 0.0, 0.7), 0.3);
     newLamp->light.setLa(QVector3D(0.03, 0.03, 0.05));

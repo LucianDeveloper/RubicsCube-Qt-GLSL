@@ -5,7 +5,7 @@
 <br>
 <br>
 <h3>Examples:</h3>
-![Image](images/1.png?raw=true)
+![Image](images/1.png)
 <br>
 <br>
-![Image](images/2.png?raw=true)
+![Image](images/2.png)

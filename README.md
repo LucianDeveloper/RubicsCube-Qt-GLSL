@@ -5,7 +5,7 @@
 <br>
 <br>
 <h3>Examples:</h3>
-<img src href="https://github.com/LucianDeveloper/RubicsCube-Qt-GLSL/blob/master/images/1.png?raw=true">
+![Image](images/1.png?raw=true)
 <br>
 <br>
-<img src href="https://github.com/LucianDeveloper/RubicsCube-Qt-GLSL/blob/master/images/2.png?raw=true">
+![Image](images/2.png?raw=true)

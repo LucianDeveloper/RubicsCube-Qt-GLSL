@@ -1,4 +1,4 @@
-#Rubik's Cube on Qt with GLSL
+# Rubik's Cube on Qt with GLSL
 
 Desktop application on the Qt framework. Implementation of the Rubik's Cube using shaders.
 
